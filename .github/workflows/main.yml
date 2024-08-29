@@ -1,0 +1,26 @@
+name: Deploy EC2 Instances
+ 
+on:
+  push:
+    branches: [main]
+ 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Configure AWS Credentials
+        uses: actions/aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.ASIASFL3AHUUV22DJRWI}}
+          aws-secret-access-key: ${{ secrets.C3E5skhfdjI9IPDTs2JCCT+DG0maqi/ZnDYZ3Phe}}
+          region: us-east-1
+ 
+      - name: Terraform Init
+        run: terraform init
+ 
+      - name: Terraform Plan
+        run: terraform plan
+ 
+      - name: Terraform Apply
+        run: terraform apply
